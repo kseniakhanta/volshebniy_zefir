@@ -92,3 +92,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ========== НАСТРОЙКИ ДЛЯ МЕДИАФАЙЛОВ (В САМОМ КОНЦЕ!) ==========
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Статические файлы (CSS, JS, изображения)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+# Медиа файлы (загруженные пользователями)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Разрешаем все хосты для Docker
+ALLOWED_HOSTS = ['*']
+
+# Отключаем DEBUG в продакшене (для Docker)
+DEBUG = False
+
