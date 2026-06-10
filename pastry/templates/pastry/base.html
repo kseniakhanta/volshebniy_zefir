@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волшебный зефир | {{ title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'pastry/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🍰 Волшебный зефир</h1>
+                    <p>✨ Сладкое волшебство каждый день ✨</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'pastry:product_list' %}">🏠 Главная</a></li>
+                        <li><a href="{% url 'pastry:product_create' %}">➕ Добавить товар</a></li>
+                        <li><a href="/admin">🔧 Админка</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="categories">
+        <div class="container">
+            <div class="categories-list">
+                <a href="{% url 'pastry:product_list' %}" class="category-btn">🍬 Все сладости</a>
+                {% for category in categories %}
+                    <a href="{% url 'pastry:product_list_by_category' category.slug %}" class="category-btn">
+                        🧁 {{ category.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>🍭 Волшебный зефир | г. Улан-Удэ, ул. Сладкая, 15 🍭</p>
+            <p>📞 +7 (999) 123-45-67 | ✉️ magic@zefir.ru | 📱 @magic_zefir</p>
+            <p>🌟 Сладость — это искусство! 🌟</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem;">© 2026 Волшебный зефир. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
+EOF

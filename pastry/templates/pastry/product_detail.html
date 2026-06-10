@@ -1,0 +1,32 @@
+{% extends 'pastry/base.html' %}
+
+{% block content %}
+<div style="display: flex; gap: 2.5rem; flex-wrap: wrap; background: white; border-radius: 30px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+    <div style="flex: 1; min-width: 250px;">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        {% else %}
+            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500" style="width: 100%; border-radius: 25px;">
+        {% endif %}
+    </div>
+    <div style="flex: 1.5;">
+        <h1 style="font-size: 2.2rem; color: #d46b7e; margin-bottom: 1rem;">{{ product.name }}</h1>
+        <p style="color: #b5778a; margin-bottom: 1rem;">🍬 Категория: {{ product.category.name }}</p>
+        <div class="price" style="font-size: 2rem; margin: 1rem 0;">{{ product.price }} ₽</div>
+        <div style="margin: 1.5rem 0;">
+            <p style="font-size: 1.1rem; line-height: 1.6;">{{ product.description }}</p>
+        </div>
+        <div style="margin: 1rem 0;">
+            {% if product.is_available %}
+                <span style="background: #a8e6cf; color: #2d6a4f; padding: 0.3rem 1rem; border-radius: 20px;">✅ В наличии</span>
+            {% else %}
+                <span style="background: #ffd6d6; color: #c45b7a; padding: 0.3rem 1rem; border-radius: 20px;">❌ Нет в наличии</span>
+            {% endif %}
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="{% url 'pastry:product_list' %}" class="btn">← Вернуться к сладостям</a>
+            <a href="{% url 'pastry:product_create' %}" class="btn btn-add">➕ Добавить новый товар</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

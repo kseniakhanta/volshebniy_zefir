@@ -1,0 +1,28 @@
+{% extends 'pastry/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1 style="text-align: center; color: #d46b7e; margin-bottom: 2rem;">{{ title }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <ul style="color: #c45b7a; font-size: 0.85rem; margin-top: 0.3rem;">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+            <button type="submit" class="btn">✨ Добавить сладость ✨</button>
+            <a href="{% url 'pastry:product_list' %}" class="btn btn-add" style="background: #d46b7e;">🚫 Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+EOF
